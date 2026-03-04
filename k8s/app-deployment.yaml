@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskmanager-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskmanager-app
+  template:
+    metadata:
+      labels:
+        app: taskmanager-app
+    spec:
+      containers:
+        - name: taskmanager-app
+          image: rithikks/taskmanager-app:1.0
+          env:
+            - name: DB_URL
+              value: jdbc:postgresql://postgres:5432/taskdb
+            - name: DB_USERNAME
+              value: admin
+            - name: DB_PASSWORD
+              value: password
+          ports:
+            - containerPort: 8080
