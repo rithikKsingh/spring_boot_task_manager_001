@@ -24,5 +24,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private String role; // ROLE_USER or ROLE_ADMIN
+//    private String role; // ROLE_USER or ROLE_ADMIN
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

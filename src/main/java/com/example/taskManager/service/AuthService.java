@@ -6,4 +6,5 @@ import com.example.taskManager.dto.RegisterRequest;
 public interface AuthService {
     String register(RegisterRequest registerRequest);
     String login(LoginRequest loginRequest);
+    String registerAdmin(RegisterRequest registerRequest);
 }

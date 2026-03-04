@@ -2,6 +2,7 @@ package com.example.taskManager.service;
 
 import com.example.taskManager.dto.LoginRequest;
 import com.example.taskManager.dto.RegisterRequest;
+import com.example.taskManager.entity.Role;
 import com.example.taskManager.entity.User;
 import com.example.taskManager.repository.UserRepository;
 import com.example.taskManager.security.JwtUtil;
@@ -22,10 +23,21 @@ public class AuthServiceImpl implements AuthService{
         User user= User.builder()
                 .username(registerRequest.getUsername())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .role("ROLE_USER")
+                .role(Role.USER)
                 .build();
         userRepository.save(user);
         return "User registered successfully";
+    }
+
+    @Override
+    public String registerAdmin(RegisterRequest registerRequest){
+        User user= User.builder()
+                .username(registerRequest.getUsername())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .role(Role.ADMIN)
+                .build();
+        userRepository.save(user);
+        return "Admin registered successfully";
     }
 
     @Override
